@@ -63,5 +63,5 @@ while True:
                 print('Digite uma das duas opções [S], [N]!!')
                 continue
     else:
-        print('Digite apenas os 9 primeiros números!\n')
+        print('Digite um valor válido, apenas os 9 primeiros números!\n')
         continue
