@@ -1,100 +1,54 @@
-import os 
+import os
 
-while True:
-    decrescenteUm = 10
-    cpf_nove_digitos = input('Digite os 9 primeiros dígitos do CPF (Não inclua ponto.): ')
-    confirma = input('Digite "Enter" se digitou corretamente e "N" se não: ').lower()
-    os.system('cls')
-    if confirma.startswith('n'):
-        continue
-    if len(cpf_nove_digitos) == 9:
+print('BEM VINDO À SUA LISTA DE COMPRAS!\n')
 
-        cpf_multi = []
+itens_inseridos = []
 
-        for [i] in cpf_nove_digitos:
 
-            try:
-                iNum = int(i)
-            except:
-                os.system('cls')
-                print('Digite um valor válido!')
-                continue
-
-            multi = decrescenteUm * iNum
-
-            cpf_multi.append(multi)
-
-            decrescenteUm -= 1
-
-        a,b,c,d,e,f,g,h,i = cpf_multi
-
-        soma = a+b+c+d+e+f+g+h+i    
-
-        multi2 = soma * 10
-
-        resto = multi2 % 11
-
-        if resto >= 10:
-            print('O próximo número do CPF é: 0')
-
-            reiniciar = input('Digite [S] se quiser realizar outra operação, e [N] para sair: ').lower()
-
-            if reiniciar.startswith('s'):
-                os.system('cls')
-                continue
-            elif reiniciar.startswith('n'):
-                os.system('cls')
-                break
-            else:
-                print('Digite uma das duas opções [S], [N]!!')
-                continue
-        else:
-            print('O próximo número do CPF é: ',resto)
-            
-            reiniciar = input('Digite [S] se quiser realizar outra operação, e [N] para prosseguir: ').lower()
-
-            if reiniciar.startswith('s'):
-                os.system('cls')
-                continue
-            elif reiniciar.startswith('n'):
-                os.system('cls')
-                break
-            else:
-                print('Digite uma das duas opções [S], [N]!!')
-                continue
-    else:
-        print('Digite um valor válido, apenas os 9 primeiros números!\n')
-        continue
-
-decrescenteDois = 11
-
-cpf_dez_digitos = input('Deseja que eu descubra o último número também? [S], [N] ').lower()
-if cpf_dez_digitos.startswith('s'):
-    cpf_novo_lista = []
-    for [i] in cpf_nove_digitos:
-        cpf_novo_lista.append(i)
-    cpf_novo_lista.append(resto) if resto <= 9 else cpf_novo_lista.append(0)
+while(True):
+    print("LISTA:")
+    for indice, nome in enumerate(itens_inseridos):
+        print(indice,nome)
+    print('\n')
+    opcao = input('Selecione a opção que deseja executar:\n[I]nserir, [A]pagar, [L]istar: ').lower()
     
-    cpf_multi2 = []
+    if opcao.startswith('i'):
+        os.system('cls')
+        inserir = input('Item: ')
+        itens_inseridos.append(inserir)
+        os.system('cls')
+    elif opcao.startswith('a'):
+        os.system('cls')
+        for i,n in enumerate(itens_inseridos):
+            print(i,n)
+        print('\n')
+        apagar = input("Apagar item: ")
+        os.system('cls')
 
-    cpf_completo = []
-
-    for i in cpf_novo_lista:
-        iNum = int(i)
-        multi3 = decrescenteDois * iNum
-        cpf_multi2.append(multi3)
-        decrescenteDois -= 1 
-    j,k,l,m,n,o,p,q,r,s = cpf_multi2
-
-    soma2 = j+k+l+m+n+o+p+q+r+s
-
-    multi4 = soma2 * 10    
-
-    resto2 = multi4 % 11
-
-    if resto2 <= 9:
-        cpf_novo_lista.append(resto2)
-        print('O seu CPF completo é: ',"".join(map(str,cpf_novo_lista)))
-else:
-    os.system('cls')
-    ...
+        if not apagar.isdigit():
+            print('Digite apenas o índice!\n')
+            continue
+        else:
+            apagar1 = int(apagar)
+        if 0 <= apagar1 < len(itens_inseridos):
+            item_removido = itens_inseridos.pop(apagar1)
+            print('Item: ',item_removido, 'apagado com sucesso!')
+        else: print('Indice inválido!')
+    
+    elif opcao.startswith('l'):
+        os.system('cls')
+        if len(itens_inseridos) >= 1:
+            os.system('cls')
+            print('LISTA:')
+            for i,n in enumerate(itens_inseridos):
+                print(i,n)
+            print('\n')
+            sair_lista = input('Tecle ENTER para voltar ao menu...')
+            os.system('cls')
+            continue
+        else:
+            print('Ainda não há itens na lista')
+    else:
+        os.system('cls')
+        print('Digite alguma das operações [I],[A],[L] \n!')
+        continue
