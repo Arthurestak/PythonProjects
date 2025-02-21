@@ -32,9 +32,7 @@ for i in range(1,10001):
 
             decrescenteUm -= 1
 
-        a,b,c,d,e,f,g,h,i = cpf_multi
-
-        soma = a+b+c+d+e+f+g+h+i    
+        soma = sum(cpf_multi)    
 
         multi2 = soma * 10
 
@@ -58,8 +56,7 @@ for i in range(1,10001):
         multi3 = decrescenteDois * iNum
         cpf_multi2.append(multi3)
         decrescenteDois -= 1 
-    j,k,l,m,n,o,p,q,r,s = cpf_multi2
-    soma2 = j+k+l+m+n+o+p+q+r+s
+    soma2 = sum(cpf_multi2)
     multi4 = soma2 * 10    
     resto2 = multi4 % 11
     numerador += 1
