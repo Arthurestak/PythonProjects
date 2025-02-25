@@ -1,8 +1,15 @@
+import os 
 import random as rd
+
+numero_cpfs = input('Digite quantos CPFs você quer: ')
+
+numero_cpfs = int(numero_cpfs)
+
+numero_cpfs_para_range = numero_cpfs + 1
 
 numerador = 0
 
-for i in range(1,10001):
+for i in range(1,numero_cpfs_para_range):
     decrescenteUm = 10
 
     contador = 9
@@ -23,6 +30,7 @@ for i in range(1,10001):
             try:
                 iNum = int(i)
             except:
+                os.system('cls')
                 print('Digite um valor válido!')
                 continue
 
@@ -30,7 +38,9 @@ for i in range(1,10001):
 
             cpf_multi.append(multi)
 
-            decrescenteUm -= 1
+            decrescenteUm -= 1 
+
+
 
         soma = sum(cpf_multi)    
 
@@ -56,6 +66,7 @@ for i in range(1,10001):
         multi3 = decrescenteDois * iNum
         cpf_multi2.append(multi3)
         decrescenteDois -= 1 
+
     soma2 = sum(cpf_multi2)
     multi4 = soma2 * 10    
     resto2 = multi4 % 11
